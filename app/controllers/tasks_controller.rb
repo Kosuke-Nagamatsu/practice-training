@@ -6,12 +6,20 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
   end
+  def confirm
+    @task = Task.new(task_params)
+    render :new if @task.invalid?
+  end
   def create
     @task = Task.new(task_params)
-    if @task.save
-      redirect_to tasks_path, notice: "新規作成しました！"
-    else
+    if params[:back]
       render :new
+    else
+      if @task.save
+        redirect_to tasks_path, notice: "新規作成しました！"
+      else
+        render :new
+      end
     end
   end
   def show
