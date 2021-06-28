@@ -11,4 +11,8 @@ FactoryBot.define do
     title { 'Factoryのタイトル２' }
     content { 'Factoryのコンテント２' }
   end
+  factory :fourth_task, class: Task do
+    title { 'Factoryのタイトル3' }
+    content { '' }
+  end
 end
