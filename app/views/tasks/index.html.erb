@@ -6,7 +6,7 @@
     <th><%= t('view.content') %></th>
   </tr>
 <% @tasks.each do |task| %>
-  <tr>
+  <tr id="task_row">
     <td><%= task.title %></td>
     <td><%= task.content %></td>
     <td><%= link_to t('view.detail'), task_path(task.id) %></td>

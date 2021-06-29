@@ -1,18 +1,14 @@
 FactoryBot.define do
   factory :task do
-    title { 'test_title' }
-    content { 'test_content' }
+    title { '1番目に作成したタスクのタイトル' }
+    content { '1番目に作成したタスクのコンテント' }
   end
   factory :second_task, class: Task do
-    title { 'Factoryのタイトル１' }
-    content { 'Factoryのコンテント１' }
+    title { '2番目に作成したタスクのタイトル' }
+    content { '2番目に作成したタスクのコンテント' }
   end
   factory :third_task, class: Task do
-    title { 'Factoryのタイトル２' }
-    content { 'Factoryのコンテント２' }
-  end
-  factory :fourth_task, class: Task do
-    title { 'Factoryのタイトル3' }
-    content { '' }
+    title { '最新のタスクのタイトル' }
+    content { '最新のタスクの内容' }
   end
 end
