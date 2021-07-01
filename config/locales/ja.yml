@@ -9,6 +9,7 @@ ja:
     task: タスク
     title: タスク名
     content: 内容
+    time_limit: 終了期限
     send_with_the_following_contents: 以下の内容で送信する。
   activerecord:
     errors:
