@@ -1,9 +1,14 @@
 <h1><%= t('view.task_list') %></h1>
 <p><%= notice %></p>
 <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+<%= form_with(model: @tasks, url: tasks_path, method: :get, local: true) do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  <%= form.submit "検索する" %>
+<% end %>
 <table>
   <tr>
-    <th><%= t('view.task') %></th>
+    <th><%= t('view.title') %></th>
     <th><%= t('view.content') %></th>
     <th><%= t('view.time_limit') %></th>
     <th><%= t('view.status') %></th>
