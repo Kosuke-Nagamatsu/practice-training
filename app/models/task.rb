@@ -3,6 +3,6 @@ class Task < ApplicationRecord
   validates :content, presence: true
   validate :start_check
   def start_check
-    errors.add(:time_limit, "は現在の日時より未来の時間を選択してください") if time_limit < Time.now
+    errors.add(:time_limit, "は現在より未来の日時を選択してください") if time_limit < Time.now
   end
 end
