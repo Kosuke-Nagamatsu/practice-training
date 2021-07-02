@@ -3,9 +3,9 @@
 <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
 <%= form_with(model: @tasks, url: tasks_path, method: :get, local: true) do |form| %>
   <%= form.label :title %>
-  <%= form.text_field :title %>
+  <%= form.text_field :title, id: 'task_title'%>
   <%= form.label :status %>
-  <%= form.select :status, Task.statuses.keys %>
+  <%= form.select :status, Task.statuses.keys, id: 'task_status' %>
   <%= form.submit "検索する" %>
 <% end %>
 <table>
