@@ -18,7 +18,7 @@
 | content | text |
 | time_limit | datetime |
 | priority | string |
-| status | string |
+| status | integer |
 
 #### Label
 | column | data type |
