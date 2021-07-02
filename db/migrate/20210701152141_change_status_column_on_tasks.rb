@@ -1,5 +1,5 @@
 class ChangeStatusColumnOnTasks < ActiveRecord::Migration[5.2]
-  def change
-    change_column :tasks, :status, :string, default: '未着手', null: false
+  def up
+    change_column :tasks, :status, :integer, default: 0, null: false
   end
 end

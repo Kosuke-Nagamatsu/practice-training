@@ -1,13 +1,18 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    if params[:task].present?
-      @tasks = Task.where('title LIKE ?', "%#{params[:task][:title]}%")
+    if params[:sort_expired]
+      @tasks = Task.order(time_limit: :DESC)
     else
-      if params[:sort_expired]
-        @tasks = Task.order(time_limit: :DESC)
-      else
-        @tasks = Task.order(created_at: :DESC)
+      @tasks = Task.order(created_at: :DESC)
+    end
+    if params[:task].present?
+      if params[:task][:title].present? && params[:task][:status] != '選択してください'
+        @tasks = Task.fuzzy_by_title(params[:task][:title]).full_by_status(params[:task][:status])
+      elsif params[:task][:title].present? && params[:task][:status] == '選択してください'
+        @tasks = Task.fuzzy_by_title(params[:task][:title])
+      elsif params[:task][:status] != '選択してください'
+        @tasks = Task.full_by_status(params[:task][:status])
       end
     end
   end
