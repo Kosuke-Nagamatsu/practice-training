@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
+    @tasks = Task.order(created_at: :DESC)
     if params[:sort_expired]
       @tasks = Task.order(time_limit: :DESC)
-    elsif params[:sort_priority]
+    end
+    if params[:sort_priority]
       @tasks = Task.order(:priority)
-    else
-      @tasks = Task.order(created_at: :DESC)
     end
     if params[:task].present?
       if params[:task][:title].present? && params[:task][:status] != '選択してください'
@@ -17,6 +17,7 @@ class TasksController < ApplicationController
         @tasks = Task.full_by_status(params[:task][:status])
       end
     end
+    @tasks = @tasks.page(params[:page]).per(10)
   end
   def new
     @task = Task.new
