@@ -3,6 +3,8 @@ class TasksController < ApplicationController
   def index
     if params[:sort_expired]
       @tasks = Task.order(time_limit: :DESC)
+    elsif params[:sort_priority]
+      @tasks = Task.order(:priority)
     else
       @tasks = Task.order(created_at: :DESC)
     end
