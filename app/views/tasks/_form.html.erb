@@ -25,6 +25,10 @@
     <%= form.label :status %>
     <%= form.select :status, Task.statuses.keys %>
   </div>
+  <div class="task_content">
+    <%= form.label :priority %>
+    <%= form.select :priority, Task.priorities.keys %>
+  </div>
   <%= form.submit %>
 <% end %>
 <%= link_to t('view.task_list'), tasks_path %>
