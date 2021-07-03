@@ -44,6 +44,21 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
+  describe '一覧表示機能' do
+    before do
+      FactoryBot.create(:task)
+      FactoryBot.create(:second_task)
+      FactoryBot.create(:third_task)
+      visit tasks_path
+    end
+    context '優先順位でソートするというリンクを押した場合' do
+      it '優先順位の高い順に並び替えられたタスク一覧が表示される' do
+        click_link '優先順位でソートする'
+        task_list = all('#task_row td')
+        expect(task_list[4]).to have_content '高'
+      end
+    end
+  end
   # ステップ2で作成したコード
   # describe '一覧表示機能' do
   #   before do
