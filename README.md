@@ -17,7 +17,7 @@
 | tittle | string |
 | content | text |
 | time_limit | datetime |
-| priority | string |
+| priority | integer |
 | status | integer |
 
 #### Label

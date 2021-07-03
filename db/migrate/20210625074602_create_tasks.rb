@@ -5,6 +5,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.text :content
       t.datetime :time_limit
       t.integer :status
+      t.integer :priority
       t.timestamps
     end
   end
