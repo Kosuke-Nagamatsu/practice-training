@@ -2,7 +2,6 @@
   <div class="col-md-8 offset-md-2">
     <h2><%= t('view.task_list') %></h2>
     <p><%= notice %></p>
-    <%= paginate @tasks %>
     <%= form_with(model: @tasks, url: tasks_path, method: :get, local: true) do |form| %>
       <div class="navbar-form">
         <div class="form_group">
@@ -46,3 +45,4 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @tasks %>
