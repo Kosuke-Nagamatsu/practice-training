@@ -1,3 +1,10 @@
-<h2><%= t('view.detail') %></h2>
-<p><%= t('view.title') %>：<%= @task.title %></p>
-<p><%= t('view.content') %>：<%= @task.content %></p>
+<div class="flex-container">
+  <div>
+    <h2><%= t('view.detail') %></h2>
+    <p><%= t('view.title') %>：<%= @task.title %></p>
+    <p><%= t('view.content') %>：<%= @task.content %></p>
+    <p><%= t('view.time_limit') %>：<%= @task.time_limit.strftime("%Y年%m月%d日%H時%M分") %></p>
+    <p><%= t('view.status') %>：<%= @task.status %></p>
+    <p><%= t('view.priority') %>：<%= @task.priority %></p>
+  </div>
+</div>
