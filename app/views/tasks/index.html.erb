@@ -1,34 +1,48 @@
-<h1><%= t('view.task_list') %></h1>
-<p><%= notice %></p>
-<%= paginate @tasks %>
-<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
-<%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %>
-<%= form_with(model: @tasks, url: tasks_path, method: :get, local: true) do |form| %>
-  <%= form.label :title %>
-  <%= form.text_field :title, id: 'task_title'%>
-  <%= form.label :status %>
-  <%= form.select :status, Task.statuses.keys, id: 'task_status' %>
-  <%= form.submit "検索する" %>
-<% end %>
-<table>
-  <tr>
-    <th><%= t('view.title') %></th>
-    <th><%= t('view.content') %></th>
-    <th><%= t('view.time_limit') %></th>
-    <th><%= t('view.status') %></th>
-    <th><%= t('view.priority') %></th>
-  </tr>
-<% @tasks.each do |task| %>
-  <tr id="task_row">
-    <td><%= task.title %></td>
-    <td><%= task.content %></td>
-    <td><%= task.time_limit.strftime("%Y年%m月%d日%H時%M分") %></td>
-    <td><%= task.status %></td>
-    <td><%= task.priority %></td>
-    <td><%= link_to t('view.detail'), task_path(task.id) %></td>
-    <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
-    <td><%= link_to link_to t('view.delete'), task_path(task.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
-  </tr>
-<% end %>
-</table>
-<%= link_to t('view.new'), new_task_path %>
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <h2><%= t('view.task_list') %></h2>
+    <p><%= notice %></p>
+    <%= paginate @tasks %>
+    <%= form_with(model: @tasks, url: tasks_path, method: :get, local: true) do |form| %>
+      <div class="navbar-form">
+        <div class="form_group">
+          <%= form.label :タスク名, class: 'content-margin' %>
+          <%= form.text_field :title, placeholder: 'Search a keyword', id: 'task_title', class: 'form-control' %>
+          <%= form.label :ステータス, class: 'content-margin' %>
+          <%= form.select :status, Task.statuses.keys, id: 'task_status' %>
+          <%= form.submit "検索する", class: 'btn btn-default navbar-btn btn-sm content-margin' %>
+        </div>
+      </div>
+    <% end %>
+    <div class="btn-new">
+      <%= link_to t('view.new'), new_task_path, class: 'btn btn-primary' %>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th><%= t('view.title') %></th>
+          <th><%= t('view.content') %></th>
+          <th><%= link_to t('view.time_limit'), tasks_path(sort_expired: "true"), title: '終了期限でソートする' %></th>
+          <th><%= t('view.status') %></th>
+          <th><%= link_to t('view.priority'), tasks_path(sort_priority: "true"), title: '優先順位でソートする' %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tasks.each.with_index(1) do |task, number| %>
+          <tr id="task_row">
+            <td><%= number %></td>
+            <td><%= task.title %></td>
+            <td><%= task.content %></td>
+            <td><%= l task.time_limit, format: :short %></td>
+            <td><%= task.status %></td>
+            <td><%= task.priority %></td>
+            <td><%= link_to t('view.detail'), task_path(task.id), class: 'btn btn-info btn-sm btn-info-customize' %></td>
+            <td><%= link_to t('view.edit'), edit_task_path(task.id), class: 'btn btn-success btn-sm btn-success-customize' %></td>
+            <td><%= link_to link_to t('view.delete'), task_path(task.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: 'btn btn-danger btn-sm btn-danger-customize' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

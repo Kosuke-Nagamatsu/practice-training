@@ -9,7 +9,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content('2番目に作成したタスクのタイトル')
         expect(page).to have_content('2番目に作成したタスクのコンテント')
         expect(page).to have_content('2021年07月11日09時30分')
-        expect(task_list[3]).to have_content '着手中'
+        expect(task_list[4]).to have_content '着手中'
       end
     end
   end
