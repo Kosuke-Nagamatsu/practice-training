@@ -8,7 +8,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         task_list = all('#task_row td')
         expect(page).to have_content('2番目に作成したタスクのタイトル')
         expect(page).to have_content('2番目に作成したタスクのコンテント')
-        expect(page).to have_content('2021年07月11日09時30分')
+        expect(page).to have_content('07/11 09:30')
         expect(task_list[4]).to have_content '着手中'
       end
     end
@@ -31,7 +31,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         find("#task_status").find("option[value='未着手']").select_option
         click_button '検索する'
         task_list = all('#task_row td')
-        expect(task_list[3]).to have_content '未着手'
+        expect(task_list[4]).to have_content '未着手'
       end
     end
     context 'タイトルのあいまい検索とステータス検索をした場合' do
@@ -39,8 +39,8 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'task_title', with: 'sa' and find("#task_status").find("option[value='着手中']").select_option
         click_button '検索する'
         task_list = all('#task_row td')
-        expect(task_list[0]).to have_content 'sample'
-        expect(task_list[3]).to have_content '着手中'
+        expect(task_list[1]).to have_content 'sample'
+        expect(task_list[4]).to have_content '着手中'
       end
     end
   end
@@ -53,9 +53,9 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
     context '優先順位でソートするというリンクを押した場合' do
       it '優先順位の高い順に並び替えられたタスク一覧が表示される' do
-        click_link '優先順位でソートする'
+        click_link '優先順位'
         task_list = all('#task_row td')
-        expect(task_list[4]).to have_content '高'
+        expect(task_list[5]).to have_content '高'
       end
     end
   end
