@@ -6,6 +6,7 @@
 | column | data type |
 | ---- | ---- |
 | id | primary_key |
+| name | string |
 | email | string |
 | password_digest | string |
 
