@@ -1,0 +1,33 @@
+<%= form_with(model: @user, local: true, url: choose_new_or_edit_admin ) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="task-form form_group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="task-form form_group">
+    <%= form.label :email %>
+    <%= form.email_field :email, class: 'form-control' %>
+  </div>
+  <div class="task-form form_group">
+    <%= form.label :password %>
+    <%= form.password_field :password, class: 'form-control' %>
+  </div>
+  <div class="task-form form_group">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+  <div class="text-center">
+    <%= form.submit "登録する", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+<br>
+<%= link_to t('view.user_list'), admin_users_path %>
