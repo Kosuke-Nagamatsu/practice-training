@@ -20,6 +20,7 @@ ja:
     name: 名前
     email: メールアドレス
     administrator_user_list: 管理者用ユーザ一覧
+    user_list: ユーザ一覧
     task_number: タスク数
   activerecord:
     errors:
