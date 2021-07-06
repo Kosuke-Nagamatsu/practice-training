@@ -1,4 +1,4 @@
-1.times do |n|
+20.times do |n|
   name = Faker::JapaneseMedia::DragonBall.character
   email = Faker::Internet.email
   password = "password"
