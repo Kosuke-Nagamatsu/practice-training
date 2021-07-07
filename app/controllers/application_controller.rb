@@ -9,4 +9,10 @@ class ApplicationController < ActionController::Base
   def access_limit_after_login
     redirect_to user_path(current_user.id) if current_user
   end
+  def if_not_admin
+    unless current_user.admin?
+      flash[:danger] = '管理者ではないのでアクセスできません'
+      redirect_to tasks_path
+    end
+  end
 end
