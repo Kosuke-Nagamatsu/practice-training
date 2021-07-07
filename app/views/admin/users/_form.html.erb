@@ -25,6 +25,10 @@
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation, class: 'form-control' %>
   </div>
+  <div class="task-form form_group">
+    <%= form.label :admin %>
+    <%= form.select :admin, User.admins.keys %>
+  </div>
   <div class="text-center">
     <%= form.submit "登録する", class: 'btn btn-primary' %>
   </div>

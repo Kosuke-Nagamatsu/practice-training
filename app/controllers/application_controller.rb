@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     redirect_to user_path(current_user.id) if current_user
   end
   def if_not_admin
-    unless current_user.admin?
+    if current_user && current_user.admin == "削除"
       flash[:danger] = '管理者ではないのでアクセスできません'
       redirect_to tasks_path
     end
