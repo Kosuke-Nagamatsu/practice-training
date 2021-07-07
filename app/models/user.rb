@@ -8,7 +8,7 @@ class User < ApplicationRecord
   before_destroy :do_not_destroy_last_admin
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
-  enum admin: { 付与: true, 削除: false }
+  enum admin: { あり: true, なし: false }
   private
   def do_not_destroy_last_admin
     if User.where(admin: :true).count == 1
