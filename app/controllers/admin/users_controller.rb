@@ -4,6 +4,7 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   def index
     @users = User.includes(:tasks)
+    @users = @users.page(params[:page]).per(10)
   end
   def new
     @user = User.new

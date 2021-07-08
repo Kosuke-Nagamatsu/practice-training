@@ -11,7 +11,7 @@ class User < ApplicationRecord
   enum admin: { あり: true, なし: false }
   private
   def do_not_destroy_last_admin
-    if User.where(admin: :true).count == 1
+    if User.where(admin: :true).count == 1 && self.admin == "あり"
       errors.add :base, '管理者は少なくとも1人は必要です'
       throw :abort
     end
