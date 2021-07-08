@@ -21,6 +21,7 @@
   <thead>
     <tr>
       <th></th>
+      <th><%= t('view.name') %></th>
       <th><%= t('view.title') %></th>
       <th><%= t('view.content') %></th>
       <th><%= link_to t('view.time_limit'), tasks_path(sort_expired: "true"), title: '終了期限でソートする' %></th>
@@ -32,6 +33,7 @@
     <% @tasks.each.with_index(1) do |task, number| %>
       <tr id="task_row">
         <td><%= number %></td>
+        <td><%= task.user.name %></td>
         <td><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= l task.time_limit, format: :short %></td>
