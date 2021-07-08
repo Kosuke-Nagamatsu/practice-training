@@ -27,7 +27,7 @@
   </div>
   <div class="task-form form_group">
     <%= form.label :admin %>
-    <%= form.select :admin, User.admins.keys %>
+    <%= form.select :admin, User.admins.keys, id: 'user_admin' %>
   </div>
   <div class="text-center">
     <%= form.submit "登録する", class: 'btn btn-primary' %>
