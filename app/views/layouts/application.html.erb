@@ -11,6 +11,16 @@
 
   <body>
     <div class="container">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
+      <% if logged_in? %>
+        <%= link_to t('view.profile'), user_path(current_user.id) %>
+        <%= link_to t('view.log_out'), session_path(current_user.id), method: :delete %>
+      <% else %>
+        <%= link_to t('view.sign_up'), new_user_path %>
+        <%= link_to t('view.log_in'), new_session_path %>
+      <% end %>
     <%= yield %>
     </div>
   </body>

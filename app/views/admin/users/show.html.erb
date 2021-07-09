@@ -1,0 +1,27 @@
+<h2><%= "#{@user.name}さんの" %><%= t('view.task_list') %></h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th><%= t('view.name') %></th>
+      <th><%= t('view.title') %></th>
+      <th><%= t('view.content') %></th>
+      <th><%= t('view.time_limit') %></th>
+      <th><%= t('view.status') %></th>
+      <th><%= t('view.priority') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.tasks.each.with_index(1) do |task, number| %>
+      <tr id="task_row">
+        <td><%= number %></td>
+        <td><%= task.user.name %></td>
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= l task.time_limit, format: :short %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

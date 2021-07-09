@@ -5,6 +5,7 @@ FactoryBot.define do
     time_limit { '2021-07-10 07:15:00' }
     status { '未着手' }
     priority { '高' }
+    # association :user
   end
   factory :second_task, class: Task do
     title { '2番目に作成したタスクのタイトル' }

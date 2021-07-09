@@ -1,20 +1,20 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    @tasks = Task.order(created_at: :DESC)
+    @tasks = current_user.tasks.order(created_at: :DESC)
     if params[:sort_expired]
-      @tasks = Task.order(time_limit: :DESC)
+      @tasks = current_user.tasks.order(time_limit: :DESC)
     end
     if params[:sort_priority]
-      @tasks = Task.order(:priority)
+      @tasks = current_user.tasks.order(:priority)
     end
     if params[:task].present?
       if params[:task][:title].present? && params[:task][:status] != '選択してください'
-        @tasks = Task.fuzzy_by_title(params[:task][:title]).full_by_status(params[:task][:status])
+        @tasks = current_user.tasks.fuzzy_by_title(params[:task][:title]).full_by_status(params[:task][:status])
       elsif params[:task][:title].present? && params[:task][:status] == '選択してください'
-        @tasks = Task.fuzzy_by_title(params[:task][:title])
+        @tasks = current_user.tasks.fuzzy_by_title(params[:task][:title])
       elsif params[:task][:status] != '選択してください'
-        @tasks = Task.full_by_status(params[:task][:status])
+        @tasks = current_user.tasks.full_by_status(params[:task][:status])
       end
     end
     @tasks = @tasks.page(params[:page]).per(10)
@@ -23,11 +23,11 @@ class TasksController < ApplicationController
     @task = Task.new
   end
   def confirm
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     render :new if @task.invalid?
   end
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if params[:back]
       render :new
     else
