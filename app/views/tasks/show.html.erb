@@ -6,5 +6,15 @@
     <p><%= t('view.time_limit') %>：<%= @task.time_limit.strftime("%Y年%m月%d日%H時%M分") %></p>
     <p><%= t('view.status') %>：<%= @task.status %></p>
     <p><%= t('view.priority') %>：<%= @task.priority %></p>
+    <p><%= t('view.label_name') %>：
+      <% @task.labels.each do |label| %>
+        <% if label.id <= 2 %>
+          <span class="label label-info">
+        <% elsif label.id <= 4 %>
+          <span class="label label-success">
+        <% end %>
+        <%= label.name %></span>
+      <% end %>
+    </p>
   </div>
 </div>

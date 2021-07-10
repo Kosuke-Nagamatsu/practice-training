@@ -23,6 +23,7 @@ ja:
     user_list: ユーザ一覧
     task_number: タスク数
     admin: 管理者権限
+    label_name: ラベル名
   activerecord:
     errors:
       messages:
