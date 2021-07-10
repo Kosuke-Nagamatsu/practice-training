@@ -29,6 +29,10 @@
     <%= form.label :priority, class: 'content-margin' %>
     <%= form.select :priority, Task.priorities.keys %>
   </div>
+  <div class="field">
+    <%= form.label :label_name, class: 'content-margin' %>
+    <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
+  </div>
   <div class="text-center">
     <%= form.submit "登録する", class: 'btn btn-primary' %>
   </div>

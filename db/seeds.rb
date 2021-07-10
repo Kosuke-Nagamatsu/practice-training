@@ -1,14 +1,7 @@
-10.times do |n|
-  name = Faker::JapaneseMedia::DragonBall.character
-  email = Faker::Internet.email
-  password = "password"
-  User.create!(name: name,
-               email: email,
-               password: password
-               )
+labels = ["社外", "社内", "チーム", "個人"]
+labels.each do |l|
+  Label.create!(name: l)
 end
-# User.create!(name:  "管理者",
-#              email: "admin@example.jp",
-#              password:  "password",
-#              admin: true
-#             )
+# 0.times do |i|
+#   Label.create!(name: "sample#{i + 1}")
+# end

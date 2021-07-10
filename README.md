@@ -26,9 +26,9 @@
 | ---- | ---- |
 | id | primary_key |
 | task_id(FK) | bigint |
-| content | string |
+| name | string |
 
-#### TaskLabel
+#### labelling
 | column | data type |
 | ---- | ---- |
 | id | primary_key |
