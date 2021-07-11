@@ -23,15 +23,15 @@
   </div>
   <div class="task-form form_group">
     <%= form.label :status, class: 'content-margin' %>
-    <%= form.select :status, Task.statuses.keys %>
+    <%= form.select :status, Task.statuses.keys, id: 'new-status' %>
   </div>
   <div class="task-form form_group">
     <%= form.label :priority, class: 'content-margin' %>
-    <%= form.select :priority, Task.priorities.keys %>
+    <%= form.select :priority, Task.priorities.keys, id: 'new-priority' %>
   </div>
   <div class="field">
     <%= form.label 'ラベル名', class: 'content-margin' %>
-    <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
+    <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name, id: 'new-label') %>
   </div>
   <div class="text-center">
     <%= form.submit "登録する", class: 'btn btn-primary' %>
