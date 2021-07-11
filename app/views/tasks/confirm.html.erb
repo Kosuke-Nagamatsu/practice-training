@@ -12,6 +12,10 @@
       <p><%= t('view.time_limit') %>:<%= @task.time_limit.strftime("%Y年%m月%d日%H時%M分") %></p>
       <p><%= t('view.status') %>:<%= @task.status %></p>
       <p><%= t('view.priority') %>:<%= @task.priority %></p>
+      <div class="field">
+        <%= form.label :label_name, class: 'content-margin' %>
+        <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
+      </div>
       <%= form.submit "登録する", class: 'btn btn-primary btn-new' %>
       <%= form.submit "戻る", name: 'back', class: 'btn btn-primary' %>
     <% end %>
