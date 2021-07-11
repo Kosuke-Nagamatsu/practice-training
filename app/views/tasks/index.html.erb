@@ -8,6 +8,8 @@
           <%= form.text_field :title, placeholder: 'Search a keyword', id: 'task_title', class: 'form-control content-margin' %>
           <%= form.label :ステータス, class: 'content-margin' %>
           <%= form.select :status, Task.statuses.keys, id: 'task_status' %>
+          <%= form.label :ラベル名, class: 'content-margin-label' %>
+          <%= form.select :label_id, Label.pluck(:name, :id), { include_blank: true } %>
           <%= form.submit "検索する", class: 'btn btn-default navbar-btn btn-sm btn-search' %>
         </div>
       </div>
