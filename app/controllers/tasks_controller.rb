@@ -2,12 +2,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
     @tasks = current_user.tasks.order(created_at: :DESC)
-    if params[:sort_expired]
-      @tasks = current_user.tasks.order(time_limit: :DESC)
-    end
-    if params[:sort_priority]
-      @tasks = current_user.tasks.order(:priority)
-    end
+    @tasks = current_user.tasks.order(time_limit: :DESC) if params[:sort_expired]
+    @tasks = current_user.tasks.order(:priority) if params[:sort_priority]
     if params[:task].present?
       if params[:task][:title].present? && params[:task][:status] != '選択してください'
         @tasks = current_user.tasks.fuzzy_by_title(params[:task][:title]).full_by_status(params[:task][:status])
