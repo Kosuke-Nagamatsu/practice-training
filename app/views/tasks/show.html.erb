@@ -12,6 +12,10 @@
           <span class="label label-info">
         <% elsif label.id <= 4 %>
           <span class="label label-success">
+        <% elsif label.id <= 6 %>
+          <span class="label label-danger">
+        <% else %>
+          <span class="label label-default">
         <% end %>
         <%= label.name %></span>
       <% end %>
