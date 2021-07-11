@@ -10,7 +10,6 @@
 end
 10.times do |n|
   title = Faker::Food.fruits
-  password = "password"
   Task.create!(title: title,
                content: "テスト",
                time_limit: "2021-08-30 10:00:00",
